@@ -5,7 +5,8 @@ import './App.css';
 
 //import react components
 import Navbar from "./components/Navbar";
-import Footer from ".components/footer";
+import Footer from "./components/footer";
+import Wrapper from "./components/wrapper"
 
 //import pages
 import Home from ".pages/home";
@@ -18,7 +19,11 @@ function App() {
     <Router>
       <div>
         <Navbar />
-
+        <Wrapper>
+          <Route exact path="/" component = {Home} />
+          <Route exact path="/profile" component = {Profile} />
+          <Route exact path="/search" component = {Search} />
+        </Wrapper>
         <Footer />
       </div>
     </Router>
