@@ -10,7 +10,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import './App.css';
 
 //import components
-import Navbar from "./components/Navbar";
+import Navbar from "./components/NavBar";
 import Footer from "./components/footer";
 import Wrapper from "./components/wrapper"
 
