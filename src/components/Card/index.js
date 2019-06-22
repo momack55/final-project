@@ -2,7 +2,7 @@ import React from "react";
 import CardBtn from "../cardBtn";
 import "./style.css";
 
-function eventCard(props) {
+function Card(props) {
   return (
     <div
       className="card"
@@ -25,4 +25,4 @@ function eventCard(props) {
   );
 }
 
-export default eventCard;
+export default Card;
