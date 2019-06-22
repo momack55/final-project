@@ -15,9 +15,9 @@ import Footer from "./components/footer";
 import Wrapper from "./components/wrapper"
 
 //import pages
-import Home from "./pages/home";
-import Profile from "./pages/profile";
-import Search from "./pages/search";
+import About from "./pages/About";
+import Profile from "./pages/Profile";
+import Search from "./pages/Search";
 // import Signup from "./pages/signup";
 // import Login from "./pages/login";
 
@@ -28,9 +28,10 @@ function App() {
       <div>
         <Navbar />
         <Wrapper>
-          <Route exact path="/" component = {Home} />
-          <Route exact path="/profile" component = {Profile} />
-          <Route exact path="/search" component = {Search} />
+        <Route exact path="/" component={About} />
+          <Route exact path="/about" component={About} />
+          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/search" component={Search} />
           {/* <Route exact path="/signup" component = {Signup} />
           <Route exact path="/login" component = {Login} /> */}
         </Wrapper>
