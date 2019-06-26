@@ -12,7 +12,7 @@ function Card(props) {
     // >
 
     <div className="card">
-      <img className="card-img-top" src={props.image} alt="img" />
+      <img className="card-img-top" src={{ backgroundImage: props.image ? `url(${props.image})` : "none"}} alt="img" />
       <div className="card-body">
         <h3 className="card-title" id="title">{props.title}</h3>
         <p className="card-text" id="description">{props.description}</p>
