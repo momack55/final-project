@@ -4,18 +4,29 @@ import "./style.css";
 
 function Card(props) {
   return (
-    <div
-      className="card"
-      style={{
-        backgroundImage: props.image ? `url(${props.image})` : "none"
-      }}
-    >
+    // <div
+    //   className="card"
+    //   style={{
+    //     backgroundImage: props.image ? `url(${props.image})` : "none"
+    //   }}
+    // >
+
+    <div className="card">
+      <img className="card-img-top" src={props.image} alt="img" />
+      <div className="card-body">
+        <h3 className="card-title" id="title">{props.title}</h3>
+        <p className="card-text" id="description">{props.description}</p>
+        <p className="card-text" id="date">{props.date}</p>
+      </div>
+      {/* icon for load */}
       {!props.image && <i className="fa fa-spinner fa-spin" aria-hidden="true" />}
+      {/* button to generate next event */}
       <CardBtn
         style={{ opacity: props.image ? 1 : 0 }}
         onClick={props.handleBtnClick}
         data-value="pass"
       />
+      {/* button to save event */}
       <CardBtn
         style={{ opacity: props.image ? 1 : 0 }}
         onClick={props.handleBtnClick}
