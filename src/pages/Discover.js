@@ -1,7 +1,11 @@
 import React, { Component } from "react";
+import Hero from "../components/Hero";
+import Container from "../components/container";
+import Row from "../components/row";
+import Col from "../components/Col";
 import API from "../utils/API";
 import Card from "../components/Card";
-import Alert from "../components/Alert";
+//import Alert from "../components/Alert";
 
 class Discover extends Component {
   state = {
@@ -52,18 +56,25 @@ class Discover extends Component {
   render() {
     return (
       <div>
-        <h1 className="text-center">Make New Friends</h1>
-        <h3 className="text-center">
-          Thumbs up on any pups you'd like to meet!
-        </h3>
+      <Hero backgroundImage="https://thumbs.gfycat.com/RightDisloyalGallinule-size_restricted.gif" >
+        <h1>Local Events</h1>
+        <h3 className="text-center">Thumbs up on any events you want to save for later</h3>
+      </Hero>
+      <Container style={{ marginTop: 30 }}>
+      <Row>
+        <Col size="md-12">
         <Card image={this.state.image} handleBtnClick={this.handleBtnClick} />
         <h1 className="text-center">
-          Made friends with {this.state.matchCount} pups so far!
+          You have saved {this.state.matchCount} events so far!
         </h1>
-        <Alert style={{ opacity: this.state.match ? 1 : 0 }} type="success">
-          Yay! That Pup Liked You Too!!!
-        </Alert>
+        {/* <Alert style={{ opacity: this.state.match ? 1 : 0 }} type="success">
+          Yay! You have event matches!!! Go to your profile to check them out. 
+        </Alert> */}
+        </Col>
+        </Row>
+      </Container>
       </div>
+      
     );
   }
 }

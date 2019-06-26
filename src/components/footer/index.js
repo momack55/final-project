@@ -3,9 +3,9 @@ import "./style.css";
 
 function footer() {
     return (
-        <footer>
+        <footer className="footer">
             <span>
-                Final Project 2019
+                Final Project 2019 || Morgan McCormack & Lisa Vo
             </span>
         </footer>
     );
