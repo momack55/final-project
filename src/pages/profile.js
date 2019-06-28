@@ -3,12 +3,12 @@ import Hero from "../components/Hero";
 import Container from "../components/container";
 import Row from "../components/row";
 import Col from "../components/Col";
-import savedEvents from "../components/savedEvents";
+import SavedEvents from "../components/savedEvents";
 import API from "../utils/API";
 
 class Profile extends Component {
   state = {
-    svents: []
+    events: []
   };
 
   //when the component mounts, gets all events saved in the database
@@ -40,12 +40,12 @@ render () {
       <Container style={{ marginTop: 30 }}>
         <Row>
           <Col size="md-12">
-          <savedEvents results={this.state.results} />
+          <SavedEvents results={this.state.results} />
           </Col>
         </Row>
       </Container>
     </div>
   );
-}
+};
 
 export default Profile;
