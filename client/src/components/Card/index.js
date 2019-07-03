@@ -2,8 +2,6 @@
 // import CardBtn from "../cardBtn";
 // import "./style.css";
 
-
-
 // const description = dangerouslySetInnerHTML;
 
 // function Card(props) {
@@ -41,3 +39,4 @@
 // }
 
 // export default Card;
+

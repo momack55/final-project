@@ -24,7 +24,6 @@ class Discover extends Component {
     this.loadNextEvent();
     console.log();
   }
-
   handleBtnClick = event => {
     // Get the data-value of the clicked button
     const btnType = event.target.attributes.getNamedItem("data-value").value;
@@ -53,8 +52,6 @@ class Discover extends Component {
   //   return 
   // }
 
-
-
   loadNextEvent = () => {
     API.getEvents()
       .then(res =>
@@ -65,7 +62,6 @@ class Discover extends Component {
           //image: res.data.events.event[0].image.medium.url,
           //url: res.data.events.event[0].venue.url,
         })
-
       )
       .catch(err => console.log(err));
   };
@@ -117,3 +113,5 @@ class Discover extends Component {
     }
     
     export default Discover;
+
+
