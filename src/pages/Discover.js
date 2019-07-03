@@ -64,12 +64,12 @@ class Discover extends Component {
           //image: res.data.events.event[0].image.medium.url,
           //url: res.data.events.event[0].venue.url,
         })
-        
+
       )
       .catch(err => console.log(err));
   };
-  
-  renderDescription = () => ({__html: this.state.description})
+
+  renderDescription = () => ({ __html: this.state.description })
 
   render() {
     return (
@@ -80,24 +80,27 @@ class Discover extends Component {
         </Hero>
         <Container style={{ marginTop: 30 }}>
           <Row>
-            <Col size="md-12">
-              {/* <Card 
-                    title={this.state.event} 
-                    dangerouslySetInnerHTML={this.renderDescription()}
-                    startTime={this.state.startTime}
-                  /> */}
-              <h1>Title: {this.state.event}</h1>
-              <h4 dangerouslySetInnerHTML={this.renderDescription()}></h4>
-              <h4>Start Time: {this.state.startTime}</h4>
-              {/* <h4>Image: {this.state.image.medium.url}</h4> */}
-              {/* <h4>Link: {this.state.venue.url}</h4> */}
+            <Col size="md-4" />
+            <Col size="md-4">
+              <div class="card" style={{backgroundColor: "#373433", width: "500px"}}>
+                {/* <img src="..." class="card-img-top" alt="..." /> */}
+                  <div class="card-body">
+                    <h3>{this.state.event}</h3>
+                    <p class="card-text" dangerouslySetInnerHTML={this.renderDescription()}></p>
+                    <br />
+                    <p>Start Time: {this.state.startTime}</p>
+                  </div>  
+              </div>
+                {/* <h4>Image: {this.state.image.medium.url}</h4> */}
+                {/* <h4>Link: {this.state.venue.url}</h4> */}
             </Col>
+            <Col size="md-4" />
           </Row>
         </Container>
       </div>
 
-    );
-  }
-}
-
-export default Discover;
+        );
+      }
+    }
+    
+    export default Discover;
