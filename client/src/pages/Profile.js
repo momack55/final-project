@@ -1,14 +1,14 @@
-import React, { Component } from "react";
+import React from "react";
 import Hero from "../components/Hero";
 import Container from "../components/container";
 import Row from "../components/row";
 import Col from "../components/Col";
-import SavedEvents from "../components/savedEvents";
+import savedEvents from "../components/savedEvents";
 import API from "../utils/API";
 
-class Profile extends Component {
+class Profile extends React.Component {
   state = {
-    events: []
+    svents: []
   };
 
   //when the component mounts, gets all events saved in the database
@@ -40,13 +40,13 @@ class Profile extends Component {
         <Container style={{ marginTop: 30 }}>
           <Row>
             <Col size="md-12">
-            <SavedEvents results={this.state.results} />
+            <savedEvents results={this.state.results} />
             </Col>
           </Row>
         </Container>
       </div>
     );
   }
-};
+}
 
 export default Profile;
