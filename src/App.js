@@ -16,7 +16,7 @@ import Wrapper from "./components/wrapper"
 
 //import pages
 import About from "./pages/About";
-//import Profile from "./pages/Profile";
+import Profile from "./pages/Profile";
 import Discover from "./pages/Discover";
 // import Signup from "./pages/signup";
 // import Login from "./pages/login";
@@ -30,7 +30,7 @@ function App() {
         <Wrapper>
         <Route exact path="/" component={About} />
           <Route exact path="/about" component={About} />
-          {/* <Route exact path="/profile" component={Profile} /> */}
+          <Route exact path="/profile" component={Profile} />
           <Route exact path="/discover" component={Discover} />
           {/* <Route exact path="/signup" component = {Signup} />
           <Route exact path="/login" component = {Login} /> */}

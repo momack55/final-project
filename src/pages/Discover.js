@@ -4,7 +4,7 @@ import Container from "../components/container";
 import Row from "../components/row";
 import Col from "../components/Col";
 import API from "../utils/API";
-//import Card from "../components/Card";
+// import Card from "../components/Card";
 //import Alert from "../components/Alert";
 
 class Discover extends Component {
@@ -81,10 +81,14 @@ class Discover extends Component {
         <Container style={{ marginTop: 30 }}>
           <Row>
             <Col size="md-12">
-              {/* <Card title={this.state.event} description={this.state.description}/> */}
+              {/* <Card 
+                    title={this.state.event} 
+                    dangerouslySetInnerHTML={this.renderDescription()}
+                    startTime={this.state.startTime}
+                  /> */}
               <h1>Title: {this.state.event}</h1>
               <h4 dangerouslySetInnerHTML={this.renderDescription()}></h4>
-              <h4>Start Time: {this.state.start_time}</h4>
+              <h4>Start Time: {this.state.startTime}</h4>
               {/* <h4>Image: {this.state.image.medium.url}</h4> */}
               {/* <h4>Link: {this.state.venue.url}</h4> */}
             </Col>
