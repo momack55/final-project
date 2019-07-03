@@ -21,8 +21,8 @@ function App() {
           <Route exact path="/about" component={About} />
           {/* <Route exact path="/profile" component={Profile} /> */}
           <Route exact path="/discover" component={Discover} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />        
+          <Route exact path="/auth/register" component={Register} />
+          <Route exact path="/auth/login" component={Login} />        
           </Wrapper>
         <Footer />
       </div>
