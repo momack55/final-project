@@ -6,7 +6,7 @@ import Col from "../components/Col";
 import savedEvents from "../components/savedEvents";
 import API from "../utils/API";
 
-class Profile extends Component {
+class Profile extends React.Component {
   state = {
     svents: []
   };
@@ -30,22 +30,23 @@ class Profile extends Component {
       .catch(err => console.log(err));
   }
 
-render () {
-  return (
-    <div>
-      <Hero backgroundImage="https://thumbs.gfycat.com/RightDisloyalGallinule-size_restricted.gif" >
-        <h1>My Events</h1>
-        <h3>Manage your saved events</h3>
-      </Hero>
-      <Container style={{ marginTop: 30 }}>
-        <Row>
-          <Col size="md-12">
-          <savedEvents results={this.state.results} />
-          </Col>
-        </Row>
-      </Container>
-    </div>
-  );
+  render () {
+    return (
+      <div>
+        <Hero backgroundImage="https://thumbs.gfycat.com/RightDisloyalGallinule-size_restricted.gif" >
+          <h1>My Events</h1>
+          <h3>Manage your saved events</h3>
+        </Hero>
+        <Container style={{ marginTop: 30 }}>
+          <Row>
+            <Col size="md-12">
+            <savedEvents results={this.state.results} />
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    );
+  }
 }
 
 export default Profile;
