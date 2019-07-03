@@ -3,7 +3,7 @@ import Hero from "../components/Hero";
 import Container from "../components/container";
 import Row from "../components/row";
 import Col from "../components/Col";
-//import SavedEvents from "../components/savedEvents";
+import SavedEvents from "../components/savedEvents";
 import API from "../utils/API";
 
 class Profile extends Component {
@@ -40,7 +40,7 @@ class Profile extends Component {
         <Container style={{ marginTop: 30 }}>
           <Row>
             <Col size="md-12">
-            {/* <SavedEvents results={this.state.results} /> */}
+            <SavedEvents results={this.state.results} />
             </Col>
           </Row>
         </Container>
