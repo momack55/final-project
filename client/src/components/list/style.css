@@ -1,0 +1,15 @@
+.btn-dark {
+    background-color: gray;
+  }
+  
+  .btn-dark:hover {
+    background-color: #2f3e48;
+  }
+  
+  .btn-dark:focus {
+    background-color: #2f3e48;
+  }
+  
+  .btn-dark:active {
+    background-color: #2f3e48;
+  }

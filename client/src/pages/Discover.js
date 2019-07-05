@@ -5,8 +5,8 @@ import Row from "../components/row";
 import Col from "../components/Col";
 import API from "../utils/API";
 // import PickBtn from "../components/pickBtn";
-import PassBtn from "../components/passBtn";
-// import CardBtn from "../components/cardBtn";
+// import PassBtn from "../components/passBtn";
+import CardBtn from "../components/cardBtn";
 // import Card from "../components/Card";
 //import Alert from "../components/Alert";
 
@@ -57,18 +57,18 @@ class Discover extends Component {
 
   handlePickButton = e => {
     console.log(e);
-    e.preventDefault();
+    // e.preventDefault();
     console.log(this.state.event)
     let savedEvents = this.state.event.filter(event => event.id === e.target.id)
     savedEvents = savedEvents[0];
     API.saveEvent(savedEvents)
-        .then(this.setState({ message: alert("Your event is saved") }))
+        .then(this.setState({ message: console.log("Your event is saved") }))
         .catch(err => console.log(err))
   };
 
-  handlePassButton = (event) => {
-    console.log(event);
-    // event.preventDefault();
+  handlePassButton = (e) => {
+    console.log(e);
+    // e.preventDefault();
     // event.stopPropagation();
     console.log(this.state.event)
     this.loadNextEvent();
@@ -102,11 +102,11 @@ class Discover extends Component {
           <Row>
             <Col size="md-4" />
             <Col size="md-4">
-              <div class="card" style={{backgroundColor: "#373433", width: "500px"}}>
+              <div className="card" style={{backgroundColor: "#373433", width: "500px"}}>
                 {/* <img src="..." class="card-img-top" alt="..." /> */}
-                  <div class="card-body">
+                  <div className="card-body">
                     <h3>{this.state.event}</h3>
-                    <p class="card-text" dangerouslySetInnerHTML={this.renderDescription()}></p>
+                    <p className="card-text" dangerouslySetInnerHTML={this.renderDescription()}></p>
                     <br />
                     <p>Start Time: {this.state.startTime}</p>
                   </div>  
@@ -115,22 +115,23 @@ class Discover extends Component {
                 {/* <h4>Link: {this.state.venue.url}</h4> */}
 
                 {/* button to load next event */}
-                {/* <CardBtn
+                <CardBtn
                   // style={{ opacity: props.image ? 1 : 0 }}
-                  onClick={this.loadNextEvent()}
-                  data-value="pass"
-                /> */}
-                <PassBtn
-                  onClick={this.handlePassButton()}
+                  onClick={this.handlePassButton}
                   data-value="pass"
                 />
+                {/* <PassBtn
+                  icon="thumbs-up"
+                  onClick={this.handlePassButton}
+                  data-value="pass"
+                /> */}
 
                 {/* button to save event */}
-                {/* <CardBtn
+                <CardBtn
                   // style={{ opacity: props.image ? 1 : 0 }}
-                  onClick={this.handleBtnClick()}
-                  data-value="pick"
-                /> */}
+                  onClick={this.handlePickButton}
+                  data-value="pick" 
+                />
                 {/* <PickBtn
                   onClick={this.handlePickButton()}
                   data-value="pick"

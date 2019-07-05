@@ -22,7 +22,7 @@ class Profile extends React.Component {
   //function to get saved books
   getSavedEvents = () => {
     API.getSavedEvents() 
-      .then(res => this.setState({ savedEvents: res.data }))
+      .then(res => this.setState({ events: res.data }))
       .catch(err => console.log(err));
   }
 
@@ -45,18 +45,16 @@ class Profile extends React.Component {
             <Col size="md-12">
             {/* <savedEvents results={this.state.results} /> */}
             {/* <SavedEvents savedEvents={this.state.savedEvents} handleDeleteButton={this.handleDeleteButton} /> */}
-            <Card title="Saved Events" icon="download">
+            <Card icon="download">
               {this.state.events.length ? (
                 <List>
                   {this.state.events.map(event => (
                     <Event
                       key={event._id}
                       title={event.title}
-                      subtitle={event.subtitle}
                       link={event.link}
-                      authors={event.authors.join(", ")}
                       description={event.description}
-                      image={event.image}
+                      // image={event.image}
                       Button={() => (
                         <button
                           onClick={() => this.handleDeleteBtn(event._id)}
