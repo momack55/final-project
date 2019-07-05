@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
@@ -32,6 +33,21 @@ return (
             >
               Logout
             </button>
+            <Link to="/discover"
+                        className={window.location.pathname === "/discover"}>
+            <button
+              style={{
+                width: "150px",
+                borderRadius: "3px",
+                letterSpacing: "1.5px",
+                marginTop: "1rem",
+                marginLeft: "1rem"
+              }}
+              className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+            > 
+            Find Events!
+            </button>
+            </Link>
           </div>
         </div>
       </div>
