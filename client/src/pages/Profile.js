@@ -3,12 +3,15 @@ import Hero from "../components/Hero";
 import Container from "../components/container";
 import Row from "../components/row";
 import Col from "../components/Col";
-import savedEvents from "../components/savedEvents";
+// import SavedEvents from "../components/savedEvents";
 import API from "../utils/API";
+import Card from "../components/Card";
+import List from "../components/list";
+import Event from "../components/event";
 
 class Profile extends React.Component {
   state = {
-    svents: []
+    events: []
   };
 
   //when the component mounts, gets all events saved in the database
@@ -18,7 +21,7 @@ class Profile extends React.Component {
 
   //function to get saved books
   getSavedEvents = () => {
-    API.getEvents() 
+    API.getSavedEvents() 
       .then(res => this.setState({ savedEvents: res.data }))
       .catch(err => console.log(err));
   }
@@ -40,7 +43,35 @@ class Profile extends React.Component {
         <Container style={{ marginTop: 30 }}>
           <Row>
             <Col size="md-12">
-            <savedEvents results={this.state.results} />
+            {/* <savedEvents results={this.state.results} /> */}
+            {/* <SavedEvents savedEvents={this.state.savedEvents} handleDeleteButton={this.handleDeleteButton} /> */}
+            <Card title="Saved Events" icon="download">
+              {this.state.events.length ? (
+                <List>
+                  {this.state.events.map(event => (
+                    <Event
+                      key={event._id}
+                      title={event.title}
+                      subtitle={event.subtitle}
+                      link={event.link}
+                      authors={event.authors.join(", ")}
+                      description={event.description}
+                      image={event.image}
+                      Button={() => (
+                        <button
+                          onClick={() => this.handleDeleteBtn(event._id)}
+                          className="btn btn-danger ml-2"
+                        ><i class="fas fa-trash-alt"></i>&nbsp;
+                          Delete
+                        </button>
+                      )}
+                    />
+                  ))}
+                </List>
+              ) : (
+                <h2 className="text-center">No Saved Eventss</h2>
+              )}
+            </Card>
             </Col>
           </Row>
         </Container>

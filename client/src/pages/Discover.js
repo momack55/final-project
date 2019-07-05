@@ -66,10 +66,10 @@ class Discover extends Component {
         .catch(err => console.log(err))
   };
 
-  handlePassButton = () => {
+  handlePassButton = (event) => {
     console.log(event);
-    event.preventDefault();
-    event.stopPropagation();
+    // event.preventDefault();
+    // event.stopPropagation();
     console.log(this.state.event)
     this.loadNextEvent();
   };
