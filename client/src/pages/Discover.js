@@ -4,6 +4,8 @@ import Container from "../components/container";
 import Row from "../components/row";
 import Col from "../components/Col";
 import API from "../utils/API";
+// import PickBtn from "../components/pickBtn";
+import PassBtn from "../components/passBtn";
 // import CardBtn from "../components/cardBtn";
 // import Card from "../components/Card";
 //import Alert from "../components/Alert";
@@ -24,34 +26,55 @@ class Discover extends Component {
     this.loadNextEvent();
     console.log();
   }
-  handleBtnClick = event => {
-    // Get the data-value of the clicked button
-    const btnType = event.target.attributes.getNamedItem("data-value").value;
-    // Clone this.state to the newState object
-    // We'll modify this object and use it to set our component's state
-    const newState = { ...this.state };
+  // handleBtnClick = event => {
 
-    if (btnType === "pick") {
-      // Set newState.match to either true or false depending on whether or not the dog likes us (1/5 chance)
-      newState.match = 1 === Math.floor(Math.random() * 5) + 1;
+  //   // Get the data-value of the clicked button
+  //   // const btnType = event.target.attributes.getNamedItem("data-value").value;
+  //   // Clone this.state to the newState object
+  //   // We'll modify this object and use it to set our component's state
+  //   const newState = { ...this.state };
 
-      // Set newState.matchCount equal to its current value or its current value + 1 depending on whether the dog likes us
-      newState.matchCount = newState.match
-        ? newState.matchCount + 1
-        : newState.matchCount;
-    } else {
-      // If we thumbs down'ed the dog, we haven't matched with it
-      newState.match = false;
-    }
-    // Replace our component's state with newState, load the next dog image
-    this.setState(newState);
-    this.loadNextEvent();
-  };
+  //   if (btnType === "pick") {
+  //     // Set newState.match to either true or false depending on if it is a pass or save
+  //     newState.match = 1 
+
+  //     // Set newState.matchCount equal to its current value or its current value + 1 depending on whether the dog likes us
+  //     newState.matchCount = newState.match
+  //       ? newState.matchCount + 1
+  //       : newState.matchCount;
+  //   } else {
+  //     // If we thumbs down'ed the event, we haven't saved it
+  //     newState.match = false;
+  //   }
+  //   // Replace our component's state with newState, load the next event
+  //   this.setState(newState);
+  //   this.loadNextEvent();
+  // };
 
   // createMarkup = () => {
   //   return 
   // }
 
+  handlePickButton = e => {
+    console.log(e);
+    e.preventDefault();
+    console.log(this.state.event)
+    let savedEvents = this.state.event.filter(event => event.id === e.target.id)
+    savedEvents = savedEvents[0];
+    API.saveEvent(savedEvents)
+        .then(this.setState({ message: alert("Your event is saved") }))
+        .catch(err => console.log(err))
+  };
+
+  handlePassButton = () => {
+    console.log(event);
+    event.preventDefault();
+    event.stopPropagation();
+    console.log(this.state.event)
+    this.loadNextEvent();
+  };
+
+  //function to load next event
   loadNextEvent = () => {
     API.getEvents()
       .then(res =>
@@ -91,17 +114,28 @@ class Discover extends Component {
                 {/* <h4>Image: {this.state.image.medium.url}</h4> */}
                 {/* <h4>Link: {this.state.venue.url}</h4> */}
 
+                {/* button to load next event */}
                 {/* <CardBtn
                   // style={{ opacity: props.image ? 1 : 0 }}
                   onClick={this.loadNextEvent()}
                   data-value="pass"
+                /> */}
+                <PassBtn
+                  onClick={this.handlePassButton()}
+                  data-value="pass"
                 />
+
                 {/* button to save event */}
                 {/* <CardBtn
                   // style={{ opacity: props.image ? 1 : 0 }}
                   onClick={this.handleBtnClick()}
                   data-value="pick"
-                /> */} 
+                /> */}
+                {/* <PickBtn
+                  onClick={this.handlePickButton()}
+                  data-value="pick"
+                /> */}
+
             </Col>
             <Col size="md-4" />
           </Row>
