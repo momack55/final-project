@@ -27,14 +27,19 @@ app.use(passport.initialize());
 // DB Config
 const db = require("./config/keys").mongoURI || "mongodb://localhost/fun-finder";
 
-// Connect to MongoDB
-mongoose
-    .connect(
-        db,
-        { useNewUrlParser: true }
-    )
-    .then(() => console.log("MongoDB successfully connected"))
-    .catch(err => console.log(err));
+// // Connect to MongoDB
+// mongoose
+//     .connect(
+//         db,
+//         { useNewUrlParser: true }
+//     )
+//     .then(() => console.log("MongoDB successfully connected"))
+//     .catch(err => console.log(err));
+
+//test connection
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fun-finder", {
+  useNewUrlParser: true
+});
 
 //Passport Config
 require("./config/passport")(passport);

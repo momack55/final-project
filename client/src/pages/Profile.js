@@ -32,6 +32,9 @@ class Profile extends React.Component {
       .catch(err => console.log(err));
   }
 
+  //function to render description
+  renderDescription = () => ({ __html: this.state.events.description })
+
   render () {
     return (
       <div>
@@ -41,6 +44,12 @@ class Profile extends React.Component {
         </Hero>
         <Container style={{ marginTop: 30 }}>
           <Row>
+            {/* <Col size="md-2">
+              <Card icon="users">
+              
+              </Card>
+            </Col> */}
+            {/* <Col size="md-10"> */}
             <Col size="md-12">
             <Card icon="download">
               {this.state.events.length ? (
@@ -56,14 +65,16 @@ class Profile extends React.Component {
                       // image={event.image}
                       Button={() => (
                         <button
-                          onClick={() => this.handleDeleteBtn(event._id)}
+                          onClick={this.handleDeleteBtn()}
                           className="btn btn-danger ml-2"
-                        ><i class="fas fa-trash-alt"></i>&nbsp;
+                        ><i className="fas fa-trash-alt"></i>&nbsp;
                           Delete
                         </button>
                       )}
                     />
+                    
                   ))}
+                  
                 </List>
               ) : (
                 <h2 className="text-center"> No Saved Events! Go to the Search page to plan your weekend.</h2>

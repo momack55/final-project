@@ -12,15 +12,15 @@ const eventSchema = new Schema ({
     },
     description: {
         type: String,
-        required: true
+        required: false
     },
     url: {
         type: String,
-        required: true
+        required: false
     },
     startTime: {
         type: String,
-        required: true
+        required: false
     },
     venue: {
         type: String,
@@ -28,7 +28,7 @@ const eventSchema = new Schema ({
     },
     eventId: {
         type: String,
-        required: true
+        required: false
     }
 });
 

@@ -5,7 +5,7 @@ export default {
   getEvents: function(){
     return axios.get("https://cors-anywhere.herokuapp.com/"+"http://api.eventful.com/json/events/search?app_key=9NB8Mpkx7sf2kfZs&l=Nashville&t=This+Weekend");
   },
-  //get events that have been saved to db 
+  //get events that have been saved to db as JSON
   getSavedEvents: function () {
     return axios.get("/api/events/");
   }, 

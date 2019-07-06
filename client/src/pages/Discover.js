@@ -13,7 +13,7 @@ class Discover extends Component {
     event: "",
     description: "",
     startTime: "",
-    image: "",
+    // image: "",
     url: "",
     venue: "",
     // match: false,
@@ -27,19 +27,8 @@ class Discover extends Component {
   }
 
   //function to save event to db on thumbs up
-  // handlePickButton = e => {
-  //   console.log(e);
-  //   console.log(this.state.event)
-  //   let savedEvents = this.state.events.filter(event => event.id === e.target.id)
-  //   savedEvents = savedEvents[0];
-  //   API.saveEvent(savedEvents)
-  //   // API.saveEvent(this.state.event)
-  //       .then(this.setState({ message: console.log("Your event is saved") }))
-  //       .catch(err => console.log(err))
-  // };
-
-  //function to save event to db on thumbs up
   handlePickButton = (e) => {
+    // console.log(e);
     // const event = this.state.event.find(event => event.id === id);
     const event = this.state;
     console.log(event);
@@ -50,8 +39,9 @@ class Discover extends Component {
       description: event.description,
       startTime: event.start_time,
       venue: event.venue
-      // image: event.image
+    //   // image: event.image
     }).then(console.log("You have saved the event " + this.state.event + "!"))
+          // .then(console.log(event.id))
       .then(this.loadNextEvent())
       .catch(err => console.log(err));
   };
@@ -70,7 +60,7 @@ class Discover extends Component {
     API.getEvents()
       .then(res =>
         this.setState({
-          id: res.data.events.event[0].id,
+          eventId: res.data.events.event[0].id,
           event: res.data.events.event[0].title,
           description: res.data.events.event[0].description,
           startTime: res.data.events.event[0].start_time,
@@ -78,16 +68,15 @@ class Discover extends Component {
           url: res.data.events.event[0].url,
           venue: res.data.events.event[0].venue_name
         })
-      // ).then(res => this.renderNoImage()
       ).catch(err => console.log(err));
   };
 
   //function to set image state to default image
-  renderNoImage = (res) => {
-    if (!this.state.image) {
-      this.setState({image: "../../src/img/noimage.jpg" })
-    } 
-  }
+  // renderNoImage = (res) => {
+  //   if (!this.state.image) {
+  //     this.setState({image: "../../src/img/noimage.jpg" })
+  //   } 
+  // }
 
   //function to render description
   renderDescription = () => ({ __html: this.state.description })
@@ -105,9 +94,9 @@ class Discover extends Component {
 
               {/* button to load next event */}
               <CardBtn
-                  onClick={this.handlePassButton}
-                  data-value="pass"
-                />
+                onClick={this.handlePassButton}
+                data-value="pass"
+              />
 
             </Col>
             <Col size="md-4">
@@ -126,14 +115,14 @@ class Discover extends Component {
                   alt={this.state.event} 
                   onError={this.renderNoImage}
                 /> */}
-                  <div className="card-body">
-                    <h3>{this.state.event}</h3>
-                    <p className="card-text" dangerouslySetInnerHTML={this.renderDescription()}></p>
-                    <br />
-                    <p>Venue: {this.state.venue}</p>
-                    <p>Start Time: {this.state.startTime}</p>
-                    
-                  </div>  
+
+                <div className="card-body">
+                  <h3>{this.state.event}</h3>
+                  <p className="card-text" dangerouslySetInnerHTML={this.renderDescription()}></p>
+                  <br />
+                  <p>Venue: {this.state.venue}</p>
+                  <p>Start Time: {this.state.startTime}</p>              
+                </div>  
               </div>
 
             </Col>
@@ -149,11 +138,10 @@ class Discover extends Component {
           </Row>
         </Container>
       </div>
-
-        );
-      }
-    }
+    );
+  }
+}
     
-    export default Discover;
+export default Discover;
 
 
