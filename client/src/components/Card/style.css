@@ -1,11 +1,22 @@
+.card-header {
+  background-color: black;
+  text-align: center;
+}
+
+.fa {
+  left: 50%;
+}
+
 .card {
-    background-size: cover;
-    background-position: center;
-    background-clip: content-box;
-    border: 6px solid white;
-    height: 400px;
+    background-color: black;
+    color: white;
+    /* background-size: cover; */
+    /* background-position: center; */
+    /* background-clip: content-box; */
+    border: 1px solid white;
+    height: auto;
     width: 400px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    box-shadow: 0 3px 6px rgba(05,04,04);
     position: relative;
     margin: 0 auto;
     margin-top: 30px;

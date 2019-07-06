@@ -15,8 +15,8 @@ class Discover extends Component {
     startTime: [],
     image: [],
     url: [],
-    match: false,
-    matchCount: 0
+    // match: false,
+    // matchCount: 0
   };
 
   // When the component mounts, load the next event to be displayed
@@ -38,23 +38,26 @@ class Discover extends Component {
   //       .catch(err => console.log(err))
   // };
 
-  handlePickButton = (id) => {
+  handlePickButton = id => {
     console.log(this.state);
-    console.log(id);
+    // console.log(id);
     // const event = this.state.event.find(event => event.id === id);
-    const event = this.state;
-    API.saveEvent({
-      eventId: event.id,
-      event: event.title,
-      // url: event.url,
-      description: event.description,
-      startTime: event.start_time,
-      venue: event.venue
-      // image: event.image
-    }).then(() => this.loadNextEvent())
-      .then(console.log("You have saved the event " + this.state.event + "!"))
-      .catch(err => console.log(err));
+    const event = this.state.event.find(event => event.id === id);
+    console.log(event);
+    // API.saveEvent({
+    //   eventId: event.id,
+    //   event: event.title,
+    //   // url: event.url,
+    //   description: event.description,
+    //   startTime: event.start_time,
+    //   venue: event.venue
+    //   // image: event.image
+    // }).then(() => this.loadNextEvent())
+    //   .then(console.log("You have saved the event " + this.state.event + "!"))
+    //   .catch(err => console.log(err));
   };
+
+
 
   // function to load next event on thumbs down
   handlePassButton = (e) => {
@@ -111,7 +114,14 @@ class Discover extends Component {
             <Col size="md-4">
 
               {/* card to hold event generated from api */}
-              <div className="card" style={{backgroundColor: "#373433", width: "500px"}}>
+              <div className="card" 
+                style={{backgroundColor: "black", 
+                width: "500px", 
+                height: "auto",
+                borderWidth: "1px", 
+                borderColor: "white", 
+                borderStyle: "solid" }}
+              >
                 {/* <img src={this.state.image} 
                   className="card-img-top" 
                   alt={this.state.event} 
@@ -126,15 +136,13 @@ class Discover extends Component {
                     
                   </div>  
               </div>
-                {/* <h4>Image: {this.state.image.medium.url}</h4> */}
-                {/* <h4>url: {this.state.url}</h4> */}
 
             </Col>
             <Col size="md-4">
             
               {/* button to save event */}
               <CardBtn
-                onClick={this.handlePickButton}
+                onClick={this.handlePickButton()}
                 data-value="pick" 
               />
             

@@ -4,7 +4,7 @@ import Row from "../row";
 import Col from "../Col";
 // import "./style.css";
 
-function Event({ event, url, description, image, startTime, Button }) {
+function Event({ event, url, description, image, venue, startTime, Button }) {
   return (
     <ListItem>
       <Row className="flex-wrap-reverse">
@@ -26,6 +26,8 @@ function Event({ event, url, description, image, startTime, Button }) {
         </Col>
         <Col size="12 sm-8 md-10">
           <p>{description}</p>
+          <p>Venue: {venue}</p>
+          <p>Start: {startTime}</p>
         </Col>
       </Row>
     </ListItem>

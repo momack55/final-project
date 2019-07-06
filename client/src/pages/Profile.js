@@ -3,7 +3,6 @@ import Hero from "../components/Hero";
 import Container from "../components/container";
 import Row from "../components/row";
 import Col from "../components/Col";
-// import SavedEvents from "../components/savedEvents";
 import API from "../utils/API";
 import Card from "../components/Card";
 import List from "../components/list";
@@ -43,17 +42,17 @@ class Profile extends React.Component {
         <Container style={{ marginTop: 30 }}>
           <Row>
             <Col size="md-12">
-            {/* <savedEvents results={this.state.results} /> */}
-            {/* <SavedEvents savedEvents={this.state.savedEvents} handleDeleteButton={this.handleDeleteButton} /> */}
             <Card icon="download">
               {this.state.events.length ? (
                 <List>
                   {this.state.events.map(event => (
                     <Event
                       key={event._id}
-                      title={event.title}
-                      link={event.link}
+                      event={event.event}
+                      url={event.url}
                       description={event.description}
+                      venue={event.venue}
+                      startTime={event.startTime}
                       // image={event.image}
                       Button={() => (
                         <button
@@ -67,7 +66,7 @@ class Profile extends React.Component {
                   ))}
                 </List>
               ) : (
-                <h2 className="text-center">No Saved Eventss</h2>
+                <h2 className="text-center"> No Saved Events! Go to the Search page to plan your weekend.</h2>
               )}
             </Card>
             </Col>

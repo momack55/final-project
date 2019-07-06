@@ -28,8 +28,7 @@ const eventSchema = new Schema ({
     },
     eventId: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     }
 });
 
