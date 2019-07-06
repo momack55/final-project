@@ -9,7 +9,7 @@ import CardBtn from "../components/cardBtn";
 
 class Discover extends Component {
   state = {
-    id: [],
+    eventId: [],
     event: [],
     description: [],
     startTime: [],
@@ -38,7 +38,7 @@ class Discover extends Component {
   //       .catch(err => console.log(err))
   // };
 
-  handlePickButton = (id, e) => {
+  handlePickButton = (id) => {
     console.log(this.state);
     console.log(id);
     // const event = this.state.event.find(event => event.id === id);
@@ -46,10 +46,11 @@ class Discover extends Component {
     API.saveEvent({
       eventId: event.id,
       event: event.title,
-      link: event.url,
+      // url: event.url,
       description: event.description,
       startTime: event.start_time,
-      image: event.image
+      venue: event.venue
+      // image: event.image
     }).then(() => this.loadNextEvent())
       .then(console.log("You have saved the event " + this.state.event + "!"))
       .catch(err => console.log(err));
@@ -71,8 +72,9 @@ class Discover extends Component {
           event: res.data.events.event[0].title,
           description: res.data.events.event[0].description,
           startTime: res.data.events.event[0].start_time,
-          image: res.data.events.event[0].image.medium.url,
+          // image: res.data.events.event[0].image.medium.url,
           url: res.data.events.event[0].url,
+          venue: res.data.events.event[0].venue_name
         })
       ).then(res => this.renderNoImage()
       ).catch(err => console.log(err));
@@ -119,12 +121,13 @@ class Discover extends Component {
                     <h3>{this.state.event}</h3>
                     <p className="card-text" dangerouslySetInnerHTML={this.renderDescription()}></p>
                     <br />
+                    <p>Venue: {this.state.venue}</p>
                     <p>Start Time: {this.state.startTime}</p>
                     
                   </div>  
               </div>
                 {/* <h4>Image: {this.state.image.medium.url}</h4> */}
-                {/* <h4>Link: {this.state.url}</h4> */}
+                {/* <h4>url: {this.state.url}</h4> */}
 
             </Col>
             <Col size="md-4">
