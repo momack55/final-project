@@ -3,12 +3,14 @@ import Hero from "../components/Hero";
 import Container from "../components/container";
 import Row from "../components/row";
 import Col from "../components/Col";
-import savedEvents from "../components/savedEvents";
 import API from "../utils/API";
+import Card from "../components/Card";
+import List from "../components/list";
+import Event from "../components/event";
 
 class Profile extends React.Component {
   state = {
-    svents: []
+    events: []
   };
 
   //when the component mounts, gets all events saved in the database
@@ -18,8 +20,8 @@ class Profile extends React.Component {
 
   //function to get saved books
   getSavedEvents = () => {
-    API.getEvents() 
-      .then(res => this.setState({ savedEvents: res.data }))
+    API.getSavedEvents() 
+      .then(res => this.setState({ events: res.data }))
       .catch(err => console.log(err));
   }
 
@@ -30,6 +32,9 @@ class Profile extends React.Component {
       .catch(err => console.log(err));
   }
 
+  //function to render description
+  renderDescription = () => ({ __html: this.state.events.description })
+
   render () {
     return (
       <div>
@@ -39,8 +44,42 @@ class Profile extends React.Component {
         </Hero>
         <Container style={{ marginTop: 30 }}>
           <Row>
+            {/* <Col size="md-2">
+              <Card icon="users">
+              
+              </Card>
+            </Col> */}
+            {/* <Col size="md-10"> */}
             <Col size="md-12">
-            <savedEvents results={this.state.results} />
+            <Card icon="download">
+              {this.state.events.length ? (
+                <List>
+                  {this.state.events.map(event => (
+                    <Event
+                      key={event._id}
+                      event={event.event}
+                      url={event.url}
+                      description={event.description}
+                      venue={event.venue}
+                      startTime={event.startTime}
+                      // image={event.image}
+                      Button={() => (
+                        <button
+                          onClick={this.handleDeleteBtn()}
+                          className="btn btn-danger ml-2"
+                        ><i className="fas fa-trash-alt"></i>&nbsp;
+                          Delete
+                        </button>
+                      )}
+                    />
+                    
+                  ))}
+                  
+                </List>
+              ) : (
+                <h2 className="text-center"> No Saved Events! Go to the Search page to plan your weekend.</h2>
+              )}
+            </Card>
             </Col>
           </Row>
         </Container>
