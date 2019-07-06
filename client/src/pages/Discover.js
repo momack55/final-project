@@ -9,12 +9,13 @@ import CardBtn from "../components/cardBtn";
 
 class Discover extends Component {
   state = {
-    eventId: [],
-    event: [],
-    description: [],
-    startTime: [],
-    image: [],
-    url: [],
+    eventId: "",
+    event: "",
+    description: "",
+    startTime: "",
+    image: "",
+    url: "",
+    venue: "",
     // match: false,
     // matchCount: 0
   };
@@ -26,7 +27,6 @@ class Discover extends Component {
   }
 
   //function to save event to db on thumbs up
-
   // handlePickButton = e => {
   //   console.log(e);
   //   console.log(this.state.event)
@@ -38,31 +38,30 @@ class Discover extends Component {
   //       .catch(err => console.log(err))
   // };
 
-  handlePickButton = id => {
-    console.log(this.state);
-    // console.log(id);
+  //function to save event to db on thumbs up
+  handlePickButton = (e) => {
     // const event = this.state.event.find(event => event.id === id);
-    const event = this.state.event.find(event => event.id === id);
+    const event = this.state;
     console.log(event);
-    // API.saveEvent({
-    //   eventId: event.id,
-    //   event: event.title,
-    //   // url: event.url,
-    //   description: event.description,
-    //   startTime: event.start_time,
-    //   venue: event.venue
-    //   // image: event.image
-    // }).then(() => this.loadNextEvent())
-    //   .then(console.log("You have saved the event " + this.state.event + "!"))
-    //   .catch(err => console.log(err));
+    API.saveEvent({
+      eventId: event.id,
+      event: event.event,
+      url: event.url,
+      description: event.description,
+      startTime: event.start_time,
+      venue: event.venue
+      // image: event.image
+    }).then(console.log("You have saved the event " + this.state.event + "!"))
+      .then(this.loadNextEvent())
+      .catch(err => console.log(err));
   };
-
-
 
   // function to load next event on thumbs down
   handlePassButton = (e) => {
     console.log(e);
     console.log(this.state);
+    const event = this.state.event;
+    console.log("PASS! you have passed on " + event + "Loading next event.")
     this.loadNextEvent();
   };
 
@@ -79,7 +78,7 @@ class Discover extends Component {
           url: res.data.events.event[0].url,
           venue: res.data.events.event[0].venue_name
         })
-      ).then(res => this.renderNoImage()
+      // ).then(res => this.renderNoImage()
       ).catch(err => console.log(err));
   };
 
@@ -142,7 +141,7 @@ class Discover extends Component {
             
               {/* button to save event */}
               <CardBtn
-                onClick={this.handlePickButton()}
+                onClick={this.handlePickButton}
                 data-value="pick" 
               />
             
