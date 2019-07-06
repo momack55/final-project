@@ -4,14 +4,12 @@ import Container from "../components/container";
 import Row from "../components/row";
 import Col from "../components/Col";
 import API from "../utils/API";
-// import PickBtn from "../components/pickBtn";
-// import PassBtn from "../components/passBtn";
 import CardBtn from "../components/cardBtn";
-// import Card from "../components/Card";
 //import Alert from "../components/Alert";
 
 class Discover extends Component {
   state = {
+    id: [],
     event: [],
     description: [],
     startTime: [],
@@ -26,51 +24,41 @@ class Discover extends Component {
     this.loadNextEvent();
     console.log();
   }
-  // handleBtnClick = event => {
 
-  //   // Get the data-value of the clicked button
-  //   // const btnType = event.target.attributes.getNamedItem("data-value").value;
-  //   // Clone this.state to the newState object
-  //   // We'll modify this object and use it to set our component's state
-  //   const newState = { ...this.state };
+  //function to save event to db on thumbs up
 
-  //   if (btnType === "pick") {
-  //     // Set newState.match to either true or false depending on if it is a pass or save
-  //     newState.match = 1 
-
-  //     // Set newState.matchCount equal to its current value or its current value + 1 depending on whether the dog likes us
-  //     newState.matchCount = newState.match
-  //       ? newState.matchCount + 1
-  //       : newState.matchCount;
-  //   } else {
-  //     // If we thumbs down'ed the event, we haven't saved it
-  //     newState.match = false;
-  //   }
-  //   // Replace our component's state with newState, load the next event
-  //   this.setState(newState);
-  //   this.loadNextEvent();
+  // handlePickButton = e => {
+  //   console.log(e);
+  //   console.log(this.state.event)
+  //   let savedEvents = this.state.events.filter(event => event.id === e.target.id)
+  //   savedEvents = savedEvents[0];
+  //   API.saveEvent(savedEvents)
+  //   // API.saveEvent(this.state.event)
+  //       .then(this.setState({ message: console.log("Your event is saved") }))
+  //       .catch(err => console.log(err))
   // };
 
-  // createMarkup = () => {
-  //   return 
-  // }
-
-  handlePickButton = e => {
-    console.log(e);
-    // e.preventDefault();
-    console.log(this.state.event)
-    let savedEvents = this.state.event.filter(event => event.id === e.target.id)
-    savedEvents = savedEvents[0];
-    API.saveEvent(savedEvents)
-        .then(this.setState({ message: console.log("Your event is saved") }))
-        .catch(err => console.log(err))
+  handlePickButton = (id, e) => {
+    console.log(this.state);
+    console.log(id);
+    // const event = this.state.event.find(event => event.id === id);
+    const event = this.state;
+    API.saveEvent({
+      eventId: event.id,
+      event: event.title,
+      link: event.url,
+      description: event.description,
+      startTime: event.start_time,
+      image: event.image
+    }).then(() => this.loadNextEvent())
+      .then(console.log("You have saved the event " + this.state.event + "!"))
+      .catch(err => console.log(err));
   };
 
+  // function to load next event on thumbs down
   handlePassButton = (e) => {
     console.log(e);
-    // e.preventDefault();
-    // event.stopPropagation();
-    console.log(this.state.event)
+    console.log(this.state);
     this.loadNextEvent();
   };
 
@@ -79,16 +67,25 @@ class Discover extends Component {
     API.getEvents()
       .then(res =>
         this.setState({
+          id: res.data.events.event[0].id,
           event: res.data.events.event[0].title,
           description: res.data.events.event[0].description,
           startTime: res.data.events.event[0].start_time,
-          //image: res.data.events.event[0].image.medium.url,
-          //url: res.data.events.event[0].venue.url,
+          image: res.data.events.event[0].image.medium.url,
+          url: res.data.events.event[0].url,
         })
-      )
-      .catch(err => console.log(err));
+      ).then(res => this.renderNoImage()
+      ).catch(err => console.log(err));
   };
 
+  //function to set image state to default image
+  renderNoImage = (res) => {
+    if (!this.state.image) {
+      this.setState({image: "../../src/img/noimage.jpg" })
+    } 
+  }
+
+  //function to render description
   renderDescription = () => ({ __html: this.state.description })
 
   render() {
@@ -100,45 +97,45 @@ class Discover extends Component {
         </Hero>
         <Container style={{ marginTop: 30 }}>
           <Row>
-            <Col size="md-4" />
             <Col size="md-4">
+
+              {/* button to load next event */}
+              <CardBtn
+                  onClick={this.handlePassButton}
+                  data-value="pass"
+                />
+
+            </Col>
+            <Col size="md-4">
+
+              {/* card to hold event generated from api */}
               <div className="card" style={{backgroundColor: "#373433", width: "500px"}}>
-                {/* <img src="..." class="card-img-top" alt="..." /> */}
+                {/* <img src={this.state.image} 
+                  className="card-img-top" 
+                  alt={this.state.event} 
+                  onError={this.renderNoImage}
+                /> */}
                   <div className="card-body">
                     <h3>{this.state.event}</h3>
                     <p className="card-text" dangerouslySetInnerHTML={this.renderDescription()}></p>
                     <br />
                     <p>Start Time: {this.state.startTime}</p>
+                    
                   </div>  
               </div>
                 {/* <h4>Image: {this.state.image.medium.url}</h4> */}
-                {/* <h4>Link: {this.state.venue.url}</h4> */}
-
-                {/* button to load next event */}
-                <CardBtn
-                  // style={{ opacity: props.image ? 1 : 0 }}
-                  onClick={this.handlePassButton}
-                  data-value="pass"
-                />
-                {/* <PassBtn
-                  icon="thumbs-up"
-                  onClick={this.handlePassButton}
-                  data-value="pass"
-                /> */}
-
-                {/* button to save event */}
-                <CardBtn
-                  // style={{ opacity: props.image ? 1 : 0 }}
-                  onClick={this.handlePickButton}
-                  data-value="pick" 
-                />
-                {/* <PickBtn
-                  onClick={this.handlePickButton()}
-                  data-value="pick"
-                /> */}
+                {/* <h4>Link: {this.state.url}</h4> */}
 
             </Col>
-            <Col size="md-4" />
+            <Col size="md-4">
+            
+              {/* button to save event */}
+              <CardBtn
+                onClick={this.handlePickButton}
+                data-value="pick" 
+              />
+            
+            </Col>
           </Row>
         </Container>
       </div>
