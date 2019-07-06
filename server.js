@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 
 // DB Config
-const db = require("./config/keys").mongoURI || "mongodb://localhost/fun-finder";
+const db = require("./config/keys").mongoURI || "mongodb://localhost/heroku_j28v20p6";
 
 // Connect to MongoDB
 mongoose
